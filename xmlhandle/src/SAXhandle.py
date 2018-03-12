@@ -20,6 +20,7 @@ class MovieHandler(xml.sax.ContentHandler):
     self.description = ""
 
   # 元素开始事件处理
+  # 遇到XML开始标签时调用，tag是标签的名字，attributes是标签的属性值字典。
   def startElement(self, tag, attributes):
     self.CurrentData = tag
     if tag == "movie":
@@ -28,22 +29,29 @@ class MovieHandler(xml.sax.ContentHandler):
       print("Title:", title)
 
   # 元素结束事件处理
+  # 遇到XML结束标签时调用。
   def endElement(self, tag):
-    if self.CurrentData == "type":
-      print("Type:", self.type)
-    elif self.CurrentData == "format":
-      print("Format:", self.format)
-    elif self.CurrentData == "year":
-      print("Year:", self.year)
-    elif self.CurrentData == "rating":
-      print("Rating:", self.rating)
-    elif self.CurrentData == "stars":
-      print("Stars:", self.stars)
-    elif self.CurrentData == "description":
-      print("Description:", self.description)
     self.CurrentData = ""
+    # if self.CurrentData == "type":
+    #   print("Type:", self.type)
+    # elif self.CurrentData == "format":
+    #   print("Format:", self.format)
+    # elif self.CurrentData == "year":
+    #   print("Year:", self.year)
+    # elif self.CurrentData == "rating":
+    #   print("Rating:", self.rating)
+    # elif self.CurrentData == "stars":
+    #   print("Stars:", self.stars)
+    # elif self.CurrentData == "description":
+    #   print("Description:", self.description)
+    # self.CurrentData = ""
 
   # 内容事件处理
+  # 调用时机：
+  # 从行开始，遇到标签之前，存在字符，content的值为这些字符串。
+  # 从一个标签，遇到下一个标签之前， 存在字符，content的值为这些字符串。
+  # 从一个标签，遇到行结束符之前，存在字符，content的值为这些字符串。
+  # 标签可以是开始标签，也可以是结束标签。
   def characters(self, content):
     if self.CurrentData == "type":
       self.type = content
