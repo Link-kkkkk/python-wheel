@@ -11,7 +11,7 @@ virtualenv提供虚拟python环境
 
 生成一个python3项目
 
-    virtualenv <project-name> <python3环境路径>
+    virtualenv <project-name> -p <python3环境路径>
 
 项目不会获取系统中的第三方包
 
@@ -24,4 +24,4 @@ virtualenv提供虚拟python环境
 
 退出虚拟环境
 
-    deactivate   
+    deactivate
